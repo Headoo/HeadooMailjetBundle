@@ -1,0 +1,21 @@
+{
+    "name": "headoo/headoo-mailjet-bundle",
+    "type": "symfony-bundle",
+    "description": "Symfony2 Bundle for initializing Mailjet PHP API v3 wrapper",
+    "homepage": "https://github.com/Headoo/HeadooMailjetBundle",
+    "keywords": ["mailjet", "api", "bundle"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Headoo Team",
+            "homepage": "http://headoo.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3",
+        "symfony/framework-bundle": "2.*"
+    },
+    "autoload": {
+        "psr-4": {"Headoo\\HeadooMailjetBundle\\": ""}
+    }
+}

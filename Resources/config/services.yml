@@ -1,0 +1,4 @@
+services:
+    headoo_mailjet_wrapper:
+        class: Headoo\HeadooMailjetBundle\Wrapper\MailjetWrapper
+        arguments: [%mailjet_api_key%, %mailjet_secret_key%]
