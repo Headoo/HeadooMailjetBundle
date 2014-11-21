@@ -16,7 +16,7 @@ HeadooMailjetBundle is a Symfony2 Bundle, mainly aimed at processing [MailJet AP
 
 2. Install our dependencies using :
 	```bash
-	$ php composer.phar install
+	$ php composer.phar update
 	```
 
 3. Register the bundle in your `app/AppKernel.php`:
