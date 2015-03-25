@@ -97,6 +97,7 @@ class MailjetWrapper
             $request = 'GET';
         // Request ID, empty by default
         $id = isset($params["ID"]) ? $params["ID"] : '';
+
         /*
           Using SendAPI without the "to" parameter but with "cc" AND/OR "bcc"
           Our API needs the "to" parameter filled to send email
@@ -134,7 +135,10 @@ class MailjetWrapper
                 $newsletter_id = $params['ID'];
             }
             $this->call_url = "https://api.mailjet.com/v3/DATA/NewsLetter/" . $newsletter_id . "/HTML/text/html/LAST";
-        } else {
+        }  else if($resource == "schedule"){
+             $newsletter_id = $params['ID'];
+             $this->call_url = $this->apiUrl."/newsletter/".$newsletter_id."/schedule";
+        }else {
             $this->call_url = $this->apiUrl . '/' . $resource;
         }
         if ($request == "GET") {
@@ -186,7 +190,14 @@ class MailjetWrapper
                 curl_setopt($curl_handle, CURLOPT_HTTPHEADER, array(
                     'Content-Type: text/html'
                 ));
-            } else {
+            } else if($resource == "schedule"){
+                unset($params['ID']);
+                curl_setopt($curl_handle, CURLOPT_POSTFIELDS, json_encode($params));
+                curl_setopt($curl_handle, CURLOPT_HTTPHEADER, array(
+                    'Content-Type: application/json'
+                ));
+            }
+             else {
                 curl_setopt($curl_handle, CURLOPT_POSTFIELDS, json_encode($params));
                 curl_setopt($curl_handle, CURLOPT_HTTPHEADER, array(
                     'Content-Type: application/json'
@@ -200,6 +211,7 @@ class MailjetWrapper
         if ($request == 'PUT') {
             curl_setopt($curl_handle, CURLOPT_CUSTOMREQUEST, "PUT");
         }
+
         $buffer = curl_exec($curl_handle);
         if ($this->debug == 2) {
             var_dump($buffer);
@@ -215,12 +227,12 @@ class MailjetWrapper
             $this->_response = json_decode($buffer, false, 512, JSON_BIGINT_AS_STRING);
         }
         if ($request == 'POST') {
-            return ($this->_response_code == 201) ? true : false;
+            return ($this->_response_code == 201 || $this->_response_code == 200) ? true : false;
         }
         if ($request == 'DELETE') {
-            return ($this->_response_code == 204) ? true : false;
+            return ($this->_response_code == 204 || $this->_response_code == 200) ? true : false;
         }
-        return ($this->_response_code == 200) ? true : false;
+        return ($this->_response_code == 200 || $this->_response_code == 200) ? true : false;
     }
 
     public function debug()
