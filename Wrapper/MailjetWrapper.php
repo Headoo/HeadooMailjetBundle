@@ -20,7 +20,7 @@ class MailjetWrapper
     var $secure = true;
     
     // Mode debug ? 0 : none; 1 : errors only; 2 : all
-    var $debug = 1;
+    var $debug = 0;
 
     public function __construct($mailjetApiKey, $mailjetSecretKey)
     {
