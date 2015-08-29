@@ -183,25 +183,36 @@ class MailjetWrapper
             if ($this->debug == 2) {
                 var_dump($params);
             }
-            if ($resource == "sendEmail") {
-                $this->curl_setopt_custom_postfields($curl_handle, $params);
-            } else if ($resource == "addHTMLbody") {
-                curl_setopt($curl_handle, CURLOPT_POSTFIELDS, $params['html_content']);
-                curl_setopt($curl_handle, CURLOPT_HTTPHEADER, array(
-                    'Content-Type: text/html'
-                ));
-            } else if($resource == "schedule"){
-                unset($params['ID']);
-                curl_setopt($curl_handle, CURLOPT_POSTFIELDS, json_encode($params));
-                curl_setopt($curl_handle, CURLOPT_HTTPHEADER, array(
-                    'Content-Type: application/json'
-                ));
-            }
-             else {
-                curl_setopt($curl_handle, CURLOPT_POSTFIELDS, json_encode($params));
-                curl_setopt($curl_handle, CURLOPT_HTTPHEADER, array(
-                    'Content-Type: application/json'
-                ));
+            switch ($resource) {
+                case "sendEmail":
+                    $this->curl_setopt_custom_postfields($curl_handle, $params);
+                    break;
+                case "addHTMLbody":
+                    curl_setopt($curl_handle,
+                        CURLOPT_POSTFIELDS,
+                        $params['html_content']);
+                    curl_setopt($curl_handle,
+                        CURLOPT_HTTPHEADER,
+                        [
+                            'Content-Type: text/html'
+                        ]);
+                    break;
+                case  "schedule" :
+                    unset($params['ID']);
+                    curl_setopt($curl_handle, CURLOPT_POSTFIELDS,
+                        json_encode($params));
+                    curl_setopt($curl_handle, CURLOPT_HTTPHEADER,
+                        [
+                            'Content-Type: application/json'
+                        ]);
+                    break;
+                default:
+                    curl_setopt($curl_handle, CURLOPT_POSTFIELDS, json_encode($params));
+                    curl_setopt($curl_handle, CURLOPT_HTTPHEADER,
+                        [
+                            'Content-Type: application/json'
+                        ]);
+                    break;
             }
             $this->_request_post = $params;
         }
