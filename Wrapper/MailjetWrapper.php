@@ -178,7 +178,7 @@ class MailjetWrapper
         curl_setopt($curl_handle, CURLOPT_SSL_VERIFYHOST, 2);
         curl_setopt($curl_handle, CURLOPT_USERPWD, $this->apiKey . ':' . $this->secretKey);
         $this->_request_post = false;
-        if (($request == 'POST') || ($request == 'PUT')):
+        if (in_array($request, ['POST', 'PUT'])) {
             curl_setopt($curl_handle, CURLOPT_POST, 1);
             if ($this->debug == 2) {
                 var_dump($params);
@@ -204,7 +204,7 @@ class MailjetWrapper
                 ));
             }
             $this->_request_post = $params;
-        endif;
+        }
         if ($request == 'DELETE') {
             curl_setopt($curl_handle, CURLOPT_CUSTOMREQUEST, "DELETE");
         }
