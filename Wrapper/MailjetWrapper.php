@@ -14,13 +14,13 @@ class MailjetWrapper
 {
 
     // Mailjet API version
-    var $version = 'v3';
-    
+    private $version = 'v3';
+
     // Connect with https protocol
-    var $secure = true;
-    
+    private $secure = true;
+
     // Mode debug ? 0 : none; 1 : errors only; 2 : all
-    var $debug = 0;
+    private $debug = 0;
 
     public function __construct($mailjetApiKey, $mailjetSecretKey)
     {
