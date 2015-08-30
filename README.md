@@ -9,7 +9,7 @@ HeadooMailjetBundle is a Symfony2 Bundle, mainly aimed at processing [MailJet AP
 	```json
 	{
 	    "require": {
-	        "headoo/headoo-mailjet-bundle" : "dev-master"
+	        "headoo/headoo-mailjet-bundle" : "1.0.x-dev"
 	    }
 	}
 	```	
