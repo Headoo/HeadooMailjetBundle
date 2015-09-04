@@ -22,11 +22,11 @@ class MailjetWrapper
     // Mode debug ? 0 : none; 1 : errors only; 2 : all
     private $debug = 0;
 
-    private $_response;
+    public $_response;
 
     private $call_url;
 
-    private $_response_code;
+    public $_response_code;
 
     public function __construct($mailjetApiKey, $mailjetSecretKey)
     {
