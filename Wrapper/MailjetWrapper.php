@@ -241,7 +241,7 @@ class MailjetWrapper
         if (($this->_response_code == 200) && ($resource == "getHTMLbody")) {
             $this->_response = $buffer;
         } else {
-            $this->_response = json_decode($buffer, false, 512, JSON_BIGINT_AS_STRING);
+            $this->_response = json_decode($buffer, false, 512);
         }
         if ($request == 'POST') {
             return ($this->_response_code == 201 || $this->_response_code == 200) ? true : false;
