@@ -3,6 +3,10 @@ HeadooMailjetBundle
 
 HeadooMailjetBundle is a Symfony2 Bundle, mainly aimed at processing [MailJet API v3](http://dev.mailjet.com).
 
+This wrapper use a deprecated API. some documentation is available here : https://github.com/mailjet/mailjet-apiv3-php-simple
+You should migrate to this wrapper : https://github.com/mailjet/mailjet-apiv3-php
+
+
 ## Installation
 
 1. Add to `composer.json` file :
