@@ -13,7 +13,7 @@
     ],
     "require": {
         "php": ">=5.3",
-        "symfony/framework-bundle": "2.*"
+        "symfony/framework-bundle": "2.*||3.*"
     },
     "autoload": {
         "psr-4": {"Headoo\\HeadooMailjetBundle\\": ""}
